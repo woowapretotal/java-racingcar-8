@@ -6,14 +6,15 @@ import racingcar.domain.CarsRepository;
 import java.util.Optional;
 
 public class CarsInMemoryRepository implements CarsRepository {
+    private Cars cars;
 
     @Override
     public Optional<Cars> findCars() {
-        return Optional.empty();
+        return Optional.ofNullable(cars);
     }
 
     @Override
-    public void save(final Cars x) {
-
+    public void save(final Cars cars) {
+        this.cars = cars;
     }
 }
