@@ -3,20 +3,22 @@ package racingcar.domain;
 import racingcar.common.error.DomainException;
 import racingcar.common.error.ErrorMessage;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import static racingcar.common.error.ErrorMessage.EMPTY_CAR_NAME;
 import static racingcar.common.error.ErrorMessage.NOT_ENOUGH_CAR_NAME;
 
 public class Cars {
-    private final List<Car> cars;
+    private List<Car> cars;
 
     public Cars(final List<String> cars) {
         validateCarNumbers(cars);
         validateCarNameDuplicated(cars);
-        this.cars = cars.stream()
+        this.cars = new ArrayList<>(cars.stream()
                 .map(Car::createAtStart)
-                .toList();
+                .toList());
     }
 
     private void validateCarNumbers(final List<String> cars) {
@@ -36,14 +38,14 @@ public class Cars {
     }
 
     public void moveCarsBy(MoveCondition moveCondition) {
-        cars.replaceAll(car ->
-                moveCondition.canMove() ? car.move() : car
-        );
+        cars = cars.stream()
+                .map(car -> moveCondition.canMove() ? car.move() : car)
+                .toList();
     }
 
     public List<Car> determineWinners() {
         Car maxCar = cars.stream()
-                .max((c1, c2) -> Integer.compare(c2.getPosition(), c1.getPosition()))
+                .max(Comparator.comparingInt(Car::getPosition))
                 .orElseThrow(() -> new DomainException(EMPTY_CAR_NAME));
 
         return cars.stream()

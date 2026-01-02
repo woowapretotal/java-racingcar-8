@@ -18,7 +18,7 @@ public class Car {
     }
 
     public boolean isSamePosition(Car other) {
-        return carPosition == other.carPosition;
+        return carPosition.equals(other.carPosition);
     }
 
     public String getName() {
