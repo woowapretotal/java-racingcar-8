@@ -9,6 +9,7 @@ public enum ErrorMessage {
     NOT_ENOUGH_CAR_NAME("자동차 이름은 반드시 1개 이상이어야 합니다."),
     DUPLICATED_CAR_NAME("중복된 자동차 이름이 존재합니다"),
     OUT_RANGE_OF_MOVE_COUNT("이동 횟수는 %d 이상이어야 합니다"),
+    EMPTY_CAR_INFO("등록된 자동차 정보가 없습니다."),
     EMPTY_CSV_VALUE("비어있는 항목이 존재합니다.");
 
     private final String message;
