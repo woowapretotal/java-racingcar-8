@@ -18,6 +18,8 @@ public class TypeConverter {
             return Double.parseDouble(line);
         } catch (NumberFormatException e) {
             throw new ApplicationException(ErrorMessage.INVALID_DECIMAL_FORMAT);
+        } catch (NullPointerException e) {
+            throw new ApplicationException(ErrorMessage.EMPTY_INPUT);
         }
     }
 }
