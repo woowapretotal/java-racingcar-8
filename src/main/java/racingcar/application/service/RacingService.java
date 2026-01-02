@@ -3,10 +3,7 @@ package racingcar.application.service;
 import racingcar.application.service.response.AllRoundStatus;
 import racingcar.application.service.response.CarStatus;
 import racingcar.common.error.ApplicationException;
-import racingcar.domain.Cars;
-import racingcar.domain.CarsRepository;
-import racingcar.domain.MoveCondition;
-import racingcar.domain.RemainRound;
+import racingcar.domain.*;
 
 import java.util.List;
 
@@ -48,6 +45,14 @@ public class RacingService {
     private List<CarStatus> createCarStatuses(Cars cars) {
         return cars.getCars().stream()
                 .map(CarStatus::from)
+                .toList();
+    }
+
+    public List<String> determineWinner() {
+        Cars cars = findCars();
+        List<Car> winners = cars.determineWinners();
+        return winners.stream()
+                .map(Car::getName)
                 .toList();
     }
 

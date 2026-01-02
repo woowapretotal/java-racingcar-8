@@ -29,5 +29,8 @@ public class RacingController {
         outputView.printAllRoundStatus(allRoundStatus);
     }
 
-    
+    public void findWinners() {
+        List<String> winnerNames = racingService.determineWinner();
+        outputView.printWinner(winnerNames);
+    }
 }
