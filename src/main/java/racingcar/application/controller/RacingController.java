@@ -2,6 +2,7 @@ package racingcar.application.controller;
 
 import racingcar.application.controller.reader.ConsoleInputHandler;
 import racingcar.application.service.RacingService;
+import racingcar.application.service.response.AllRoundStatus;
 import racingcar.application.view.ConsoleOutputView;
 
 import java.util.List;
@@ -23,8 +24,10 @@ public class RacingController {
     }
 
     public void runGame() {
-        /*int xx = inputReader.readXX();
-        XServiceXXXResponse response = xService.logic(new XServiceXXXRequest(xx));
-        outputView.printXX(response);*/
+        int tryCount = inputHandler.readTryCount();
+        AllRoundStatus allRoundStatus = racingService.proceedGame(tryCount);
+        outputView.printAllRoundStatus(allRoundStatus);
     }
+
+    
 }
