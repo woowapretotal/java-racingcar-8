@@ -5,7 +5,7 @@ import racingcar.common.error.DomainException;
 import java.util.Objects;
 
 import static racingcar.common.error.ErrorMessage.EMPTY_CAR_NAME;
-import static racingcar.common.error.ErrorMessage.EXCEED_MAX_LENGTH;
+import static racingcar.common.error.ErrorMessage.CAR_NAME_EXCEED_MAX_LENGTH;
 
 public class CarName {
     private static final int MAX_LENGTH = 5;
@@ -26,7 +26,7 @@ public class CarName {
 
     private void validateLength(final String value) {
         if (value.length() > MAX_LENGTH) {
-            throw new DomainException(EXCEED_MAX_LENGTH, MAX_LENGTH);
+            throw new DomainException(CAR_NAME_EXCEED_MAX_LENGTH, MAX_LENGTH);
         }
     }
 
