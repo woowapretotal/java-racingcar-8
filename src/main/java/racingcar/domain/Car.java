@@ -17,6 +17,10 @@ public class Car {
         return new Car(carName, carPosition.advance());
     }
 
+    public boolean isSamePosition(Car other) {
+        return carPosition == other.carPosition;
+    }
+
     public String getName() {
         return carName.value();
     }
